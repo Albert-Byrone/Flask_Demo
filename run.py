@@ -11,24 +11,6 @@ api =Api(app)
 def make_shell_context():
     return {'db': db , 'User': User, "Profile": Profile}
 
-@app.route("/register", methods=["POST"])
-def register():
-    data = request.get_json()
-
-    if not data.get("username"):
-        return jsonify({ "error": "The username must be provided"})
-
-    if User.query.filter_by(username= data["username"]):
-        return jsonify({ "error": "The username already exist"})
-
-    if not data.get("email"):
-        return jsonify({ "error": "The email must be provided"})
-
-    user = User(username=data["username"], email=data["email"])
-    db.session.add(user)
-    db.commit()
-    return jsonify({"message":"User created succesfullyu"}), 201
-
 
 
 if __name__ == '__main__':
