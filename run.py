@@ -7,6 +7,11 @@ from app.models import User, Profile
 app = create_app()
 api =Api(app)
 
+
+@app.before_request
+def create_tables():
+    db.create_all()
+
 @app.shell_context_processor
 def make_shell_context():
     return {'db': db , 'User': User, "Profile": Profile}
@@ -33,3 +38,8 @@ if __name__ == '__main__':
 
 #     def __repr__(self):
 #         return f'<User {self.username}>'
+
+
+
+# Authentication -Access token
+# Authorization
