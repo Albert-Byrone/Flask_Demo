@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-
+from flask_cors import CORS
 
 
 db = SQLAlchemy()
@@ -20,6 +20,7 @@ def create_app():
     from .auth import register_user_resources
 
     api = Api(app)
+    CORS(app)
     register_resources(api)
     register_user_resources(api)
     return app

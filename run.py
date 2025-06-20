@@ -4,6 +4,8 @@ from flask import jsonify, request
 from app import create_app, db
 from app.models import User, Profile
 
+
+
 app = create_app()
 api =Api(app)
 
